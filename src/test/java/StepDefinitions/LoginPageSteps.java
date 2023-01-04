@@ -5,6 +5,12 @@ import Utilities.DriverFactory;
 import io.cucumber.java.en.*;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 public class LoginPageSteps {
 
@@ -21,11 +27,13 @@ public class LoginPageSteps {
     @Given("user navigates to HRM Login Page")
     public void user_navigates_to_HRM_Login_Page() throws InterruptedException {
         driver.get("https://dev-hrm.yoll.io/index.php/auth/login");
-        Thread.sleep(2000);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
     @Then("user clicks on login button")
     public void user_clicks_on_login_button() {
+        Wait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        wait.until(ExpectedConditions.elementToBeClickable(loginPage.loginBtn));
         loginPage.loginBtn.click();
     }
 
@@ -58,6 +66,8 @@ public class LoginPageSteps {
         Assert.assertEquals("Error message validation has failed", expectedErrorMessage, actualErrorMessage);
     }
 
+
+
 //    @Then("user validates Password cannot be empty error message")
 //    public void user_validates_Password_cannot_be_empty_error_message() {
 //        String expectedErrorMessage = "Password cannot be empty";
@@ -80,10 +90,6 @@ public class LoginPageSteps {
 //
 //    }
 
-    @Then("user should be able to verify account name on HRM homepage")
-    public void user_should_be_able_to_verify_account_name_on_HRM_homepage() {
 
-        DriverFactory.closeDriver();
-    }
 
 }

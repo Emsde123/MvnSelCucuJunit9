@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
         // features specifies where our feature files are located.
         // by extending the path to loginPage.feature we're saying we only want to run
         // tests that exist in loginPage.feature
-        features = "src/test/resources/Features/loginPage.feature",
+        features = "src/test/resources/Features",
 
         // points to the glue, or what's holding our tests together.
         // It points to where the methods are located.
@@ -29,9 +29,10 @@ import org.junit.runner.RunWith;
    //   tags = {"@smoke, @positive"}    <-- says to run all tests with @smoke OR @positive tags
    //   tags = {"@regression", "~@positive"} <-- runs @regression tag and IGNORES @positive tags
    //   tags = {"@regression", "not @positive"} <-- does the same as above IGNORES @positive tags
-        tags = {"@negative"},  //          <-- runs tests with @smoke tag
+        tags = {"@run"},  //          <-- runs tests with @smoke tag
 
-
+        // This assigns the format of the reports, and also specifies where we want our reports to go.
+        // ALSO sets the data type (HTML)
         plugin = {"pretty", "html:target/cucumber-reports"},
 
         // Doesn't do any configuration, just changes visuals.

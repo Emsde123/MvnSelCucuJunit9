@@ -1,4 +1,4 @@
-package FramworkBasics;
+package FrameworkBasics;
 
 public class FrameWorkBasics {
 
